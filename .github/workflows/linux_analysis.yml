@@ -35,6 +35,17 @@ jobs:
     - name: "Cloning submodules"
       run: git submodule update --init --recursive
 
+    - name: Install Prerequisites
+      run: |
+       sudo apt-key adv --fetch-keys https://repos.codelite.org/CodeLite.asc
+       sudo apt-add-repository 'deb https://repos.codelite.org/wx3.2/ubuntu/ jammy universe'
+       sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+       sudo apt-get update
+       sudo apt-get install libcurl4-openssl-dev libwxbase3.2-0-unofficial \
+                libwxbase3.2unofficial-dev libwxgtk3.2-0-unofficial libwxgtk3.2unofficial-dev \
+                wx3.2-headers wx-common libnotify-dev libnotify4 libcurl4-openssl-dev lcov cmake \
+                ninja-build
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v4
       with:
