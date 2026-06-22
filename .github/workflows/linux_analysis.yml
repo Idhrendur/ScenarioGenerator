@@ -42,7 +42,7 @@ jobs:
        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
        sudo apt-get update
        sudo apt-get install libcurl4-openssl-dev libwxbase3.2-0-unofficial \
-                libwxbase3.2-1 libwxgtk3.2-1 libwxgtk3.2-1 \
+                libwxbase3.2-1 libwxgtk3.2-1 libwxgtk3.2-1 wxWidgets \
                 wx3.2-headers wx-common libnotify-dev libnotify4 libcurl4-openssl-dev lcov cmake \
                 ninja-build
 
@@ -113,7 +113,7 @@ jobs:
        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
        sudo apt-get update
        sudo apt-get install libcurl4-openssl-dev libwxbase3.2-0-unofficial \
-                libwxbase3.2-dev libwxgtk3.2-1 libwxgtk3.2-dev \
+                libwxbase3.2-dev libwxgtk3.2-1 libwxgtk3.2-dev wxWidgets \
                 wx3.2-headers wx-common libnotify-dev libnotify4 libcurl4-openssl-dev lcov cmake \
                 ninja-build
 

@@ -107,11 +107,6 @@ jobs:
        .\7z.exe a $Env:GITHUB_WORKSPACE\ScenarioGenerator-0.0-win-x64.zip $Env:GITHUB_WORKSPACE\build\Release-Windows\*
        .\7z.exe a $Env:GITHUB_WORKSPACE\ScenarioGenerator-latest-win-x64.zip $Env:GITHUB_WORKSPACE\build\Release-Windows\*
 
-    - name: "Prepare installer"
-      run: |
-        c:\"Program Files (x86)\Inno Setup 6\iscc" ScenarioGenerator-Installer.iss
-        cp $Env:GITHUB_WORKSPACE\Output\ScenarioGenerator-latest-win-x64.exe $Env:GITHUB_WORKSPACE\Output\ScenarioGenerator-0.8-win-x64.exe
-
     - name: "Upload binaries to named release"
       if: ${{ github.event_name == 'push' }}
       uses: ncipollo/release-action@v1
@@ -120,7 +115,7 @@ jobs:
         allowUpdates: true
         omitBodyDuringUpdate: true
         omitNameDuringUpdate: true
-        artifacts: ScenarioGenerator-0.8-win-x64.zip, Output\ScenarioGenerator-0.8-win-x64.exe
+        artifacts: ScenarioGenerator-0.0-win-x64.zip
         token: ${{ secrets.API_TOKEN_GITHUB }}
 
     - name: "Upload binaries to latest release"
@@ -131,7 +126,7 @@ jobs:
         allowUpdates: true
         omitBodyDuringUpdate: true
         omitNameDuringUpdate: true
-        artifacts: ScenarioGenerator-latest-win-x64.zip, Output\ScenarioGenerator-latest-win-x64.exe
+        artifacts: ScenarioGenerator-latest-win-x64.zip
         token: ${{ secrets.API_TOKEN_GITHUB }}
 
     - name: "Prepare pull request artifact"
