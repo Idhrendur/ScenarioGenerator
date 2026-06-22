@@ -14,7 +14,7 @@ jobs:
   build_test_and_publish:
     name: Build, test and publish local
     if: github.repository_owner == 'Idhrendur'
-    runs-on: [windows-latest]
+    runs-on: windows-latest
 
     steps:
     - name: work around permission issue
