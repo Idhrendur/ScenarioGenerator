@@ -4,6 +4,7 @@ Checks: >
   -altera*,
   -android*,
   -bugprone-exception-escape,
+  -cert-err58-cpp,
   -darwin*,
   -fuchsia*,
   -llvm-header-guard,
