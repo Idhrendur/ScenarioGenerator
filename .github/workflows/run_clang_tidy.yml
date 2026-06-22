@@ -11,11 +11,15 @@ concurrency:
 
 jobs:
   build_test_and_publish:
-    name: Build, test and publish local
+    name: Run clang tidy local
     if: github.repository_owner == 'Idhrendur'
     runs-on: windows-latest
 
     steps:
+    - uses: TheMrMilchmann/setup-msvc-dev@v4
+      with:
+        arch: x64
+
     - name: work around permission issue
       run: git config --global --add safe.directory /github/workspace
 
@@ -47,11 +51,15 @@ jobs:
         Get-ChildItem -Path $Env:GITHUB_WORKSPACE -Recurse -Force | Remove-Item -force -recurse
 
   build_test:
-    name: Build and test foreign
+    name: Run clang tidy foreign
     if: github.repository_owner != 'Idhrendur'
     runs-on: windows-2022
 
     steps:
+    - uses: TheMrMilchmann/setup-msvc-dev@v4
+      with:
+        arch: x64
+
     - name: "Cloning repo"
       uses: actions/checkout@v6
       with:
