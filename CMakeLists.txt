@@ -170,6 +170,7 @@ endif (PLATFORM STREQUAL "Windows" AND NOT RUN_CLANG_TIDY)
 
 include_directories(.)
 include_directories("./external/commonItems")
+include_directories("./external/fmtLib/include")
 
 set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/BulkParser.h")
 set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/Color.h")
@@ -193,6 +194,13 @@ set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/Parse
 set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/StringUtils.h")
 set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/targa.h")
 
+set(FORMAT_SOURCES ${FORMAT_SOURCES} "external/fmtLib/src/format.cc")
+set(FORMAT_SOURCES ${FORMAT_SOURCES} "external/fmtLib/src/os.cc")
+add_library(fmtLib ${FORMAT_SOURCES})
+if(MSVC)
+    target_compile_options(fmtLib PRIVATE /utf-8 /W0)
+endif()
+
 set(MAIN_SOURCE "src/main.cpp")
 
 set(GENERATOR_SOURCES ${GENERATOR_SOURCES} "src/hello_world.cpp")
@@ -204,10 +212,10 @@ if (RUN_CLANG_TIDY)
 endif(RUN_CLANG_TIDY)
 add_library(ScenarioGeneratorLib
 	${GENERATOR_SOURCES}
- )
+)
 target_precompile_headers(ScenarioGeneratorLib PUBLIC ${PCH_SOURCES})
 if (PLATFORM STREQUAL "Windows")
-	target_compile_options(ScenarioGeneratorLib PRIVATE /permissive /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 
+	target_compile_options(ScenarioGeneratorLib PRIVATE /utf-8 /permissive /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 
         /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 
         /external:anglebrackets /external:W0 /WX)
 endif (PLATFORM  STREQUAL "Windows")
@@ -215,7 +223,7 @@ endif (PLATFORM  STREQUAL "Windows")
 add_executable(
 	ScenarioGenerator
 	${MAIN_SOURCE}
- )
+)
 set_target_properties(ScenarioGenerator
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${GENERATOR_OUTPUT_DIRECTORY}
@@ -223,12 +231,12 @@ set_target_properties(ScenarioGenerator
 target_precompile_headers(ScenarioGenerator REUSE_FROM ScenarioGeneratorLib)
 target_link_libraries(ScenarioGenerator LINK_PUBLIC ScenarioGeneratorLib)
 if (PLATFORM STREQUAL "Windows")
-	target_compile_options(ScenarioGenerator PRIVATE /permissive /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 
+	target_compile_options(ScenarioGenerator PRIVATE /utf-8 /permissive /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 
         /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 
         /external:anglebrackets /external:W0 /WX)
-	target_link_libraries(ScenarioGenerator LINK_PUBLIC commonLib)
+	target_link_libraries(ScenarioGenerator LINK_PUBLIC fmtLib commonLib)
 elseif (PLATFORM STREQUAL "Linux")
-	target_link_libraries(ScenarioGenerator LINK_PUBLIC commonLib)
+	target_link_libraries(ScenarioGenerator LINK_PUBLIC fmtLib commonLib)
 endif (PLATFORM  STREQUAL "Windows")
 
 if (NOT RUN_CLANG_TIDY)
@@ -252,14 +260,14 @@ set(TEST_SOURCES ${TEST_SOURCES} "src/hello_world_test.cpp")
 add_executable(
 	ScenarioGeneratorTests
 	${TEST_SOURCES}
- )
+)
 set_target_properties(ScenarioGeneratorTests
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${TEST_OUTPUT_DIRECTORY}
 )
 target_precompile_headers(ScenarioGeneratorTests REUSE_FROM ScenarioGeneratorLib)
 if (PLATFORM STREQUAL "Windows")
-    target_compile_options(ScenarioGeneratorTests PRIVATE /permissive /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 
+    target_compile_options(ScenarioGeneratorTests PRIVATE /utf-8 /permissive /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 
         /w14296 /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 
         /external:anglebrackets /external:W0 /WX)
 elseif (PLATFORM STREQUAL "Linux")
@@ -269,7 +277,7 @@ file(COPY "data/blank_mod" DESTINATION "${TEST_OUTPUT_DIRECTORY}")
 file(COPY "data/test_files" DESTINATION "${TEST_OUTPUT_DIRECTORY}")
 file(COPY "data/test_files/configurables" DESTINATION "${TEST_OUTPUT_DIRECTORY}")
 
-target_link_libraries(ScenarioGeneratorTests LINK_PUBLIC ScenarioGeneratorLib GtestLib)
+target_link_libraries(ScenarioGeneratorTests LINK_PUBLIC ScenarioGeneratorLib fmtLib GtestLib)
 
 enable_testing()
 
@@ -351,7 +359,12 @@ endif (COVERAGE STREQUAL true)
 add_library(run_clang_tidy
 	${GENERATOR_SOURCES}
 	${TEST_SOURCES}
- )
+)
+if (PLATFORM STREQUAL "Windows")
+	target_compile_options(run_clang_tidy PRIVATE /utf-8 /permissive /W4 /w14242 /w14254 /w14263 /w14265 /w14287 /we4289 /w14296 
+        /w14311 /w14545 /w14546 /w14547 /w14549 /w14555 /w14619 /w14640 /w14826 /w14905 /w14906 /w14928 
+        /external:anglebrackets /external:W0 /WX)
+endif (PLATFORM  STREQUAL "Windows")
 target_link_libraries(run_clang_tidy pthread)
 set_target_properties(run_clang_tidy PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 add_dependencies(run_clang_tidy ScenarioGenerator ScenarioGeneratorTests)
