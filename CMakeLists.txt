@@ -277,7 +277,7 @@ file(COPY "data/blank_mod" DESTINATION "${TEST_OUTPUT_DIRECTORY}")
 file(COPY "data/test_files" DESTINATION "${TEST_OUTPUT_DIRECTORY}")
 file(COPY "data/test_files/configurables" DESTINATION "${TEST_OUTPUT_DIRECTORY}")
 
-target_link_libraries(ScenarioGeneratorTests LINK_PUBLIC ScenarioGeneratorLib fmtLib GtestLib)
+target_link_libraries(ScenarioGeneratorTests LINK_PUBLIC ScenarioGeneratorLib commonLib fmtLib GtestLib)
 
 enable_testing()
 
