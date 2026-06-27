@@ -42,8 +42,8 @@ jobs:
        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
        sudo apt-get update
        sudo apt-get install libcurl4-openssl-dev libwxbase3.2-0-unofficial \
-                libwxbase3.0-dev libwxgtk3.2-dev libwxgtk3.2-dev  \
-                wx3.2-headers wx-common libnotify-dev libnotify4 libcurl4-openssl-dev lcov cmake \
+                libwxbase3.2-1t64 libwxgtk3.2-dev  \
+                wx3.2-headers wx-common libnotify-dev libnotify4 lcov cmake \
                 ninja-build
 
     - name: Initialize CodeQL
@@ -113,8 +113,8 @@ jobs:
        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
        sudo apt-get update
        sudo apt-get install libcurl4-openssl-dev libwxbase3.2-0-unofficial \
-                libwxbase3.2-dev libwxgtk3.2-dev libwxgtk3.2-dev \
-                wx3.2-headers wx-common libnotify-dev libnotify4 libcurl4-openssl-dev lcov cmake \
+                libwxbase3.2-1t64 libwxgtk3.2-dev  \
+                wx3.2-headers wx-common libnotify-dev libnotify4 lcov cmake \
                 ninja-build
 
     - name: Prepare build
