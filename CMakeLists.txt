@@ -194,8 +194,8 @@ set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/Parse
 set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/StringUtils.h")
 set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/targa.h")
 
-set(FORMAT_SOURCES ${FORMAT_SOURCES} "external/fmtLib/src/format.cc")
-set(FORMAT_SOURCES ${FORMAT_SOURCES} "external/fmtLib/src/os.cc")
+set(FORMAT_SOURCES ${FORMAT_SOURCES} "external/fmtlib/src/format.cc")
+set(FORMAT_SOURCES ${FORMAT_SOURCES} "external/fmtlib/src/os.cc")
 add_library(fmtLib ${FORMAT_SOURCES})
 if(MSVC)
     target_compile_options(fmtLib PRIVATE /utf-8 /W0)
