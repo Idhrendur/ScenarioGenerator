@@ -170,7 +170,7 @@ endif (PLATFORM STREQUAL "Windows" AND NOT RUN_CLANG_TIDY)
 
 include_directories(.)
 include_directories("./external/commonItems")
-include_directories("./external/fmtLib/include")
+include_directories("./external/fmtlib/include")
 
 set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/BulkParser.h")
 set(PCH_SOURCES ${PCH_SOURCES} "${PROJECT_SOURCE_DIR}/external/commonItems/Color.h")
