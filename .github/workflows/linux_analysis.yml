@@ -61,7 +61,7 @@ jobs:
       run: |
        cd build-test/Coverage-Linux/
        ./ScenarioGeneratorTests
-       cd ../../..
+       cd ../..
 
     - name: Run gcov
       run: cmake --build --preset build-x64-coverage-linux --target gcov
