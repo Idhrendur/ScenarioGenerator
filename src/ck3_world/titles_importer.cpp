@@ -5,6 +5,7 @@
 #include <external/commonItems/Parser.h>
 #include <external/commonItems/ParserHelpers.h>
 
+#include <filesystem>
 #include <istream>
 #include <map>
 #include <string>
@@ -15,9 +16,9 @@
 namespace ck3_world
 {
 
-std::map<std::string, std::vector<std::string>> ImportTitles(const commonItems::ModFilesystem& ck3_root)
+std::map<std::filesystem::path, std::vector<std::string>> ImportTitles(const commonItems::ModFilesystem& ck3_root)
 {
-   std::map<std::string, std::vector<std::string>> titles;
+   std::map<std::filesystem::path, std::vector<std::string>> titles;
 
    std::vector<std::string> titles_in_file;
 
@@ -33,7 +34,7 @@ std::map<std::string, std::vector<std::string>> ImportTitles(const commonItems::
       titles_in_file.clear();
 
       file_parser.parseFile(file);
-      titles.emplace(file.filename().string(), titles_in_file);
+      titles.emplace(file.filename(), titles_in_file);
    }
 
    return titles;

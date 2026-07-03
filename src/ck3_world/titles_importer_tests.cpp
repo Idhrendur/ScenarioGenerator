@@ -16,7 +16,7 @@ namespace ck3_world
 TEST(Ck3worldTitlesimporterTests, TitlesCanBeImported)
 {
    const commonItems::ModFilesystem mod_filesystem("./test_files/Ck3worldTitlesimporterTests/TitlesCanBeImported", {});
-   const std::map<std::string, std::vector<std::string>> imported_titles = ImportTitles(mod_filesystem);
+   const std::map<std::filesystem::path, std::vector<std::string>> imported_titles = ImportTitles(mod_filesystem);
 
    EXPECT_THAT(imported_titles,
        testing::ElementsAre(testing::Pair("title_file_one.txt", std::vector<std::string>{"title_one", "title_two"}),
