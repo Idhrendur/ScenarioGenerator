@@ -1,6 +1,6 @@
-# Vic3ToHoI4
+# ScenarioGenerator
 
-Converts Victoria 3 games to Hearts of Iron 4 mods.  
+Generates a scenario for megacampaigns.
 
 The latest build is available [here](https://github.com/Idhrendur/ScenarioGenerator/releases/download/latest/ScenarioGenerator-latest-win-x64.exe).
 
