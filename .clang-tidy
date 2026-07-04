@@ -5,6 +5,7 @@ Checks: >
   -android*,
   -bugprone-exception-escape,
   -cert-err58-cpp,
+  -clang-analyzer-optin.cplusplus.UninitializedObject,
   -cppcoreguidelines-owning-memory,
   -darwin*,
   -fuchsia*,
