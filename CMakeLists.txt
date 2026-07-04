@@ -204,6 +204,8 @@ endif()
 set(MAIN_SOURCE "src/main.cpp")
 
 set(GENERATOR_SOURCES ${GENERATOR_SOURCES} "src/hello_world.cpp")
+set(GENERATOR_SOURCES ${GENERATOR_SOURCES} "src/ck3_world/titles_importer.cpp")
+set(GENERATOR_SOURCES ${GENERATOR_SOURCES} "src/output/ck3/output_titles.cpp")
 
 add_subdirectory(external/commonItems EXCLUDE_FROM_ALL)
 
@@ -256,6 +258,8 @@ include_directories("./external/commonItems/external/googletest/googlemock")
 include_directories("./external/commonItems/external/googletest/googlemock/include")
 
 set(TEST_SOURCES ${TEST_SOURCES} "src/hello_world_test.cpp")
+set(TEST_SOURCES ${TEST_SOURCES} "src/ck3_world/titles_importer_tests.cpp")
+set(TEST_SOURCES ${TEST_SOURCES} "src/output/ck3/output_titles_tests.cpp")
 
 add_executable(
 	ScenarioGeneratorTests

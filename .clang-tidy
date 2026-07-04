@@ -5,9 +5,12 @@ Checks: >
   -android*,
   -bugprone-exception-escape,
   -cert-err58-cpp,
+  -clang-analyzer-optin.cplusplus.UninitializedObject,
+  -cppcoreguidelines-owning-memory,
   -darwin*,
   -fuchsia*,
   -llvm-header-guard,
+  -llvm-include-order,
   -llvmlibc*,
   -modernize-use-trailing-return-type,
   -modernize-type-traits,
@@ -17,7 +20,7 @@ Checks: >
   -zircon*,
   
 WarningsAsErrors: '*'
-HeaderFilterRegex: ""
+HeaderFilterRegex: ".*src.*"
 ExcludeHeaderFilterRegex: '.*external.*'
 CheckOptions:
   - { key: readability-identifier-naming.AbstractClassCase,             value: CamelCase  }
