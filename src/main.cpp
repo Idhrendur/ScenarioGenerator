@@ -3,12 +3,13 @@
 
 #include <exception>
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 
-#include "ck3_world/titles_importer.hpp"
-#include "hello_world.hpp"
-#include "output/ck3/output_titles.hpp"
+#include "src/ck3_world/county_capital_identifier.hpp"
+#include "src/ck3_world/titles_importer.hpp"
+#include "src/output/ck3/output_titles.hpp"
 
 
 
@@ -20,9 +21,8 @@ int main()
           "C:/Program Files (x86)/Steam/steamapps/common/Crusader Kings III",
           {});
       const std::map<std::filesystem::path, std::vector<std::string>> titles = ck3_world::ImportTitles(mod_filesystem);
+      const std::set<int> county_capitals = ck3_world::IdentifyCountyCapitals(mod_filesystem);
       output::OutputCk3Titles("test_mod", titles);
-
-      scenario_generator::HelloWorld();
    }
    catch (std::exception& e)
    {

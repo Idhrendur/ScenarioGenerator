@@ -1,0 +1,14 @@
+e_test_empire_three = {
+	k_test_kingdom_three = {
+		d_test_duchy_three = {
+			c_test_county_three = {
+				b_test_barony_three = {
+					province = 5
+				}
+				b_test_barony_six = {
+					province = 6
+				}
+			}
+		}
+	}
+}

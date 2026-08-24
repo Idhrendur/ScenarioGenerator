@@ -1,0 +1,28 @@
+e_test_empire = {
+	k_test_kingdom = {
+		d_test_duchy = {
+			c_test_county = {
+				b_test_barony = {
+					province = 1
+				}
+				b_test_barony_two = {
+					province = 2
+				}
+			}
+		}
+	}
+}
+e_test_empire_two = {
+	k_test_kingdom_two = {
+		d_test_duchy_two = {
+			c_test_county_two = {
+				b_test_barony_two = {
+					province = 3
+				}
+				b_test_barony_four = {
+					province = 4
+				}
+			}
+		}
+	}
+}
