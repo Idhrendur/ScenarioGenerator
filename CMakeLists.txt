@@ -203,7 +203,7 @@ endif()
 
 set(MAIN_SOURCE "src/main.cpp")
 
-set(GENERATOR_SOURCES ${GENERATOR_SOURCES} "src/hello_world.cpp")
+set(GENERATOR_SOURCES ${GENERATOR_SOURCES} "src/ck3_world/county_capital_identifier.cpp")
 set(GENERATOR_SOURCES ${GENERATOR_SOURCES} "src/ck3_world/titles_importer.cpp")
 set(GENERATOR_SOURCES ${GENERATOR_SOURCES} "src/output/ck3/output_titles.cpp")
 
@@ -257,7 +257,7 @@ include_directories("./external/commonItems/external/googletest/googletest/inclu
 include_directories("./external/commonItems/external/googletest/googlemock")
 include_directories("./external/commonItems/external/googletest/googlemock/include")
 
-set(TEST_SOURCES ${TEST_SOURCES} "src/hello_world_test.cpp")
+set(TEST_SOURCES ${TEST_SOURCES} "src/ck3_world/county_capital_identifier_tests.cpp")
 set(TEST_SOURCES ${TEST_SOURCES} "src/ck3_world/titles_importer_tests.cpp")
 set(TEST_SOURCES ${TEST_SOURCES} "src/output/ck3/output_titles_tests.cpp")
 
