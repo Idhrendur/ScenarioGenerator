@@ -21,7 +21,7 @@ int main()
           "C:/Program Files (x86)/Steam/steamapps/common/Crusader Kings III",
           {});
       const std::map<std::filesystem::path, std::vector<std::string>> titles = ck3_world::ImportTitles(mod_filesystem);
-      const std::set<int> county_capitals = ck3_world::IdentifyCountyCapitals(mod_filesystem);
+      [[maybe_unused]] const std::set<int> county_capitals = ck3_world::IdentifyCountyCapitals(mod_filesystem);
       output::OutputCk3Titles("test_mod", titles);
    }
    catch (std::exception& e)
